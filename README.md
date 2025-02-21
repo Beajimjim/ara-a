@@ -87,5 +87,86 @@ python c001-eliminar duplicados.py
 ├── c001-eliminar duplicados.py  # Eliminación de duplicados en SQLite
 ├── mercado.db                   # Base de datos SQLite
 ```
+---
+
+
+# 📝 Explicación del código de los archivos subidos
+
+---
+
+## 1️⃣ `006-criterio multiple.py`
+📌 **Este script extrae información de Páginas Amarillas y la almacena en una base de datos SQLite.**
+
+- **Toma palabras clave** y busca empresas en Páginas Amarillas.
+- **Extrae enlaces de sitios web** de las empresas listadas.
+- **Limpia las URLs eliminando parámetros** y las guarda en `mercado.db`.
+- **Realiza múltiples solicitudes HTTP** con `requests` y `BeautifulSoup`.
+- **Evita bloqueos con pausas aleatorias entre peticiones**.
+
+### 🔍 **Cómo funciona**
+1. **Define una lista de palabras clave**, como `"web"`, `"programación"`, `"marketing"`, etc.
+2. **Para cada palabra clave, realiza una búsqueda** en Páginas Amarillas.
+3. **Obtiene los enlaces de empresas** (clase `web` en HTML).
+4. **Limpia las URLs** quitando parámetros innecesarios.
+5. **Guarda las URLs en la base de datos SQLite** (`mercado.db`).
+6. **Repite el proceso para 4 páginas de resultados por palabra clave**.
+7. **Espera entre 2 y 5 segundos** antes de la siguiente petición para evitar bloqueos.
+
+✅ **Útil para:** recolectar sitios web de empresas en un nicho específico.
+
+---
+
+## 2️⃣ `buscador.py`
+📌 **Este script es una interfaz gráfica (`Tkinter`) para buscar datos en `mercado.db`.**
+
+- **Permite buscar términos** en la base de datos.
+- **Muestra resultados en una tabla interactiva**.
+- **Maneja errores y muestra alertas** si no encuentra coincidencias.
+
+### 🔍 **Cómo funciona**
+1. **El usuario ingresa un término de búsqueda** en una caja de texto.
+2. **El script consulta la base de datos (`mercado.db`)** buscando coincidencias en la tabla `target_attributes`.
+3. **Muestra los resultados en una tabla**.
+4. **Si no hay coincidencias, muestra un mensaje** de "Sin resultados".
+5. **Incluye un scrollbar para manejar listas largas**.
+
+✅ **Útil para:** consultar rápidamente las URLs almacenadas en la base de datos.
+
+---
+
+## 3️⃣ `c001-eliminar duplicados.py`
+📌 **Este script elimina correos electrónicos duplicados de la base de datos `mercado.db`.**
+
+- **Busca emails repetidos** en la tabla `emails`.
+- **Mantiene solo la primera ocurrencia** de cada email.
+- **Elimina las copias duplicadas**.
+
+### 🔍 **Cómo funciona**
+1. **Conecta a la base de datos SQLite (`mercado.db`)**.
+2. **Busca correos electrónicos duplicados** en la tabla `emails`.
+3. **Para cada email duplicado**:
+   - Encuentra la primera aparición (con el menor `rowid`).
+   - Borra todas las demás copias del email.
+4. **Guarda los cambios** y cierra la base de datos.
+
+✅ **Útil para:** limpiar bases de datos eliminando información redundante.
+
+---
+
+## 4️⃣ `mercado.db`
+📌 **Este archivo es una base de datos SQLite** que almacena:
+- **Las URLs recolectadas de Páginas Amarillas** (`target_attributes` en `006-criterio multiple.py`).
+- **Los correos electrónicos de empresas** (`emails`, usado en `c001-eliminar duplicados.py`).
+
+✅ **Útil para:** manejar datos de empresas de forma estructurada.
+
+---
+
+## 🚀 **Conexión entre los scripts**
+1️⃣ **`006-criterio multiple.py`** → Extrae URLs de empresas y las almacena en `mercado.db`.  
+2️⃣ **`buscador.py`** → Permite buscar las URLs almacenadas en `mercado.db`.  
+3️⃣ **`c001-eliminar duplicados.py`** → Elimina correos electrónicos repetidos en `mercado.db`.  
+
+✅ **Sistema completo para extraer, almacenar, consultar y limpiar datos de empresas en Páginas Amarillas.** 🚀
 
 
