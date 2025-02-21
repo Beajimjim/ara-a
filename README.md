@@ -88,11 +88,4 @@ python c001-eliminar duplicados.py
 ├── mercado.db                   # Base de datos SQLite
 ```
 
-## Contribución
-
-Si deseas contribuir a este proyecto, puedes hacer un `fork`, realizar mejoras y enviar un `pull request` con tus cambios.
-
-## Licencia
-
-Este proyecto está bajo la licencia MIT. Puedes usarlo libremente en proyectos personales y comerciales.
 
